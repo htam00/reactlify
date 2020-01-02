@@ -2,26 +2,26 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 
-const url = "https://api.github.com/users";
+const url = "http://localhost:4040/";
 
 class Repos extends React.Component {
   state = {
-    repos: []
+    users: []
   }
 
   componentDidMount() {
     axios.get(url)
       .then(res => {
-        const repos = res.data;
-        this.setState({ repos });
+        const users = res.data;
+        this.setState({ users });
       })
   }
 
   render() {
     return (
       <ul>
-        { this.state.repos.map(repo => 
-		<li>{repo.login}</li>
+        { this.state.users.map(user => 
+		<li>{user.name}</li>
 	)}
       </ul>
     )
