@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 
-const url = "http://localhost:4040/";
+const url = "https://thawing-ocean-58985.herokuapp.com/";
 
 class Repos extends React.Component {
   state = {
