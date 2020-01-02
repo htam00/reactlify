@@ -1,24 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
+
+const url = "https://api.github.com/users";
+
+class Repos extends React.Component {
+  state = {
+    repos: []
+  }
+
+  componentDidMount() {
+    axios.get(url)
+      .then(res => {
+        const repos = res.data;
+        this.setState({ repos });
+      })
+  }
+
+  render() {
+    return (
+      <ul>
+        { this.state.repos.map(repo => 
+		<li>{repo.login}</li>
+	)}
+      </ul>
+    )
+  }
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      	<h1>Users Github</h1>
+	<div>
+	  <Repos />
+	</div>
     </div>
   );
 }
